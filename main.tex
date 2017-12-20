@@ -89,6 +89,7 @@ The GO-MAP pipeline itself will have all the code to run the pipeline, but some 
 
 \begin{itemize}
  \item OS:- linux
+
  \item Languages
  \begin{itemize}
    \item R v3.4
@@ -96,6 +97,7 @@ The GO-MAP pipeline itself will have all the code to run the pipeline, but some 
    \item Java v1.8
    \item Perl
  \end{itemize}
+
  \item software
  \begin{itemize}
    \item MATLAB
@@ -111,7 +113,6 @@ The GO-MAP pipeline itself will have all the code to run the pipeline, but some 
  \end{itemize}
 
  \item R packages
-
  \begin{itemize}
   \item ontologyIndex
   \item data.table
@@ -163,7 +164,7 @@ The pipeline if downloaded from CyVerse contains all the data files and software
 
 \begin{enumerate}
  \def\labelenumi{\arabic{enumi}.}
- \tightlist
+
  \item
        Install dependencies
  \item
@@ -171,7 +172,7 @@ The pipeline if downloaded from CyVerse contains all the data files and software
 \end{enumerate}
 
 \begin{itemize}
- \tightlist
+
  \item
        A shell script is provided to make the installation of the packages
        easy.
@@ -186,13 +187,13 @@ The pipeline if downloaded from CyVerse contains all the data files and software
 \begin{enumerate}
  \def\labelenumi{\arabic{enumi}.}
  \setcounter{enumi}{2}
- \tightlist
+
  \item
        Setup MySQL database for Pannzer
 \end{enumerate}
 
 \begin{itemize}
- \tightlist
+
  \item
        Create a database named pannzer
  \item
@@ -217,7 +218,7 @@ dataset from all differnt approaches. The main steps are given below.
 
 \begin{enumerate}
  \def\labelenumi{\arabic{enumi}.}
- \tightlist
+
  \item
        Add the protein fasta file to \texttt{input/raw/}
  \item
@@ -225,14 +226,14 @@ dataset from all differnt approaches. The main steps are given below.
 \end{enumerate}
 
 \begin{itemize}
- \tightlist
+
  \item
        Update the \texttt{work\_dir} in the pipeline section
  \item
        Update the \texttt{input} section
 
        \begin{itemize}
-        \tightlist
+
         \item
               Give the correct input FASTA file name
         \item
@@ -249,7 +250,7 @@ dataset from all differnt approaches. The main steps are given below.
        {[}Optional{]} Update the \texttt{seq-sim} section
 
        \begin{itemize}
-        \tightlist
+
         \item
               (All the files should be already processed in this section)
        \end{itemize}
@@ -257,7 +258,7 @@ dataset from all differnt approaches. The main steps are given below.
        {[}Optional{]} Update the \texttt{mix-meth} section
 
        \begin{itemize}
-        \tightlist
+
         \item
               (All the files and fields should be already set, except changes to
               database section for PANNZER )
@@ -266,7 +267,7 @@ dataset from all differnt approaches. The main steps are given below.
        {[}Optional{]} Update \texttt{blast} and \texttt{hmmer} sections
 
        \begin{itemize}
-        \tightlist
+
         \item
               This is to enable the correct number cpu threads for these software
        \end{itemize}
@@ -278,13 +279,13 @@ dataset from all differnt approaches. The main steps are given below.
 \begin{enumerate}
  \def\labelenumi{\arabic{enumi}.}
  \setcounter{enumi}{2}
- \tightlist
+
  \item
        execute \texttt{python\ pipeline1.py\ config.json}
 \end{enumerate}
 
 \begin{itemize}
- \tightlist
+
  \item
        The pipeline will generate a number of intermidiate output files
  \item
@@ -298,7 +299,7 @@ dataset from all differnt approaches. The main steps are given below.
 \begin{enumerate}
  \def\labelenumi{\arabic{enumi}.}
  \setcounter{enumi}{3}
- \tightlist
+
  \item
        Submit the files in \texttt{mixed-meth/argot2.5/blast} and
        \texttt{mixed-meth/argot2.5/hmmer} using correct pairing
@@ -309,7 +310,7 @@ dataset from all differnt approaches. The main steps are given below.
 \end{enumerate}
 
 \begin{itemize}
- \tightlist
+
  \item
        Argot2.5 names all results as \texttt{argot\_results\_ts0.tsv} so the
        file should be renamed correctly (e.g.~test.1.tsv, test.2.tsv)
@@ -321,7 +322,7 @@ dataset from all differnt approaches. The main steps are given below.
 \begin{enumerate}
  \def\labelenumi{\arabic{enumi}.}
  \setcounter{enumi}{5}
- \tightlist
+
  \item
        execute \texttt{python\ pipeline2.py\ config.json}
 \end{enumerate}
