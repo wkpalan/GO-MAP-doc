@@ -1,0 +1,345 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[document]{ragged2e}
+ \usepackage[T1]{fontenc}
+ \usepackage[utf8]{inputenc}
+ \usepackage[pdftex]{graphicx}
+ \usepackage{subcaption}
+ \usepackage{rotating}
+ \usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
+ \hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue, bookmarksnumbered=true,pdfview=FitB}
+\usepackage{array}
+\usepackage{authblk}
+\usepackage{mathptmx}
+\usepackage{tabularx}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{multirow}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage[labelfont=bf]{caption}
+\usepackage{csvsimple}
+\usepackage[group-separator={,}]{siunitx}
+\usepackage{lscape}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{DejaVuSansMono}
+\usepackage{minted}
+\usepackage{paralist}
+\setminted[sh]{fontfamily=DejaVuSansMono-TLF,breaksymbolleft=,fontsize=\footnotesize}
+\setminted[matlab]{fontfamily=DejaVuSansMono-TLF,breaksymbolleft=,fontsize=\footnotesize}
+\lstset{basicstyle=\fontfamily{DejaVuSansMono-TLF}\footnotesize}
+
+\usepackage[style=chicago-authordate]{biblatex}
+\addbibresource{references/maize-GO-manuscript.bib}
+
+
+\title{
+  GO-MAP\\
+  \Large{ Gene Ontology - Meta Annotator for Plants} \\
+  \large {Version 0.1}
+}
+\author{Kokulapalan Wimalanathan}
+
+
+\begin{document}
+\DeclareGraphicsExtensions{.jpg,.pdf,.mps,.png}
+
+\maketitle
+\newpage
+
+\section{Introduction}
+
+\subsection{What is GAMER-pipeline?}
+Gene Ontology - Meta Annotator for Plants (\textbf{GO-MAP}) is a pipeline which
+annotates GO terms to plant protein sequences. The pipeline uses three different
+approaches to annotate GO terms to plant proteins and uses a mix of custom code
+and existing software tools to assign GO terms. The pipeline was designed to
+create a high confidence GO annotation dataset for reference proteomes, and it
+is recommended that the pipeline in it's current form used for that. The main
+pipeline has been written using Python and R, and other software tools used will
+be briefly described in the requirements section. Three main approaches used to
+annotate GO terms are given below.
+
+\subsection{What are the methods used to annotate GO terms?}
+% \begin{enumerate}
+%   \item Sequence-similarity based methods
+%   \item Domain-presence based methods
+%   \item Mixed-method pipelines N
+% \end{enumerate}
+
+\subsubsection{Sequence-similarity based methods}
+Sequence-similarity based GO annotations were performed using the reciprocal-best-hit method against two different datasets namely TAIR and UniProt. The NCBI BLASTP tool will be used reciprocally to search for similar sequences between the protein sequences of target species being annotated and other datasets. The results from BLASTP search will be processed using R script to determine the reciprocal-best-hits and assign GO terms from TAIR and UniProt to the target species.
+
+\subsubsection{Domain-presence based methods}
+Putative protein domains will be assinged to the protein sequence using InterProScan5 pipeline. InterProScan5 uses a java based pipeline to find protein domain signatures in target sequences and assigns GO terms based on the presence of the domain signatures.
+
+\subsubsection{Mixed-method pipelines/tools}
+Three best performing pipelines/tools which have competed in the first iteration of the \href{http://biofunctionprediction.org}{CAFA} competition will be used to assign GO terms to proteins. These tools are \href{http://www.medcomp.medicina.unipd.it/Argot2-5/}{Argot2.5}, \href{http://ekhidna.biocenter.helsinki.fi/pannzer}{PANNZER}, and \href{http://montana.informatics.indiana.edu/fanngo/fanngo.html}{FANN-GO}. Each of the tools have specific requirements, setup instructions and pre-processing steps. These all will be explained in the setup section.
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+% Requirements and installation section
+%%%%%%%%%%%%%%%%%%%%
+\section{Installing Requirements and Obtaining GO-MAP}
+The GO-MAP pipeline itself will have all the code to run the pipeline, but some requirements have to be installed before GO-MAP can be used. \\[0.3cm]
+
+\subsection{What are the requirements for GO-MAP?}
+
+\begin{itemize}
+ \item OS:- linux
+ \item Languages
+ \begin{itemize}
+   \item R v3.4
+   \item Python v2
+   \item Java v1.8
+   \item Perl
+ \end{itemize}
+ \item software
+ \begin{itemize}
+   \item MATLAB
+   \item MySQL/MariaDB
+ \end{itemize}
+
+ \item Python Packages
+ \begin{itemize}
+  \item biopython
+  \item numpy
+  \item scipy
+  \item MySQL-python
+ \end{itemize}
+
+ \item R packages
+
+ \begin{itemize}
+  \item ontologyIndex
+  \item data.table
+  \item ggplot2
+  \item futile.logger
+  \item jsonlite
+ \end{itemize}
+
+\end{itemize}
+
+The pipeline if downloaded from CyVerse contains all the data files and software to run the process on a given protein sequence fasta file. The disk space required for the pipeline is large (\textasciitilde{}160GB) and when it runs it will require close to 300GB of disk space.
+
+\begin{itemize}
+ \item
+       Sequence-similarity
+ \item
+       BLAST
+ \item
+       InterProScan5
+ \item
+       Java 1.8*
+ \item
+       Python 2*
+ \item
+       Perl*
+ \item
+       FANN-GO
+ \item
+       Matlab*
+ \item
+       PANNZER
+ \item
+       Python 2
+ \item
+       MySQL/MariaDB*
+ \item
+       Argot2
+ \item
+       BLASTP
+ \item
+       Hmmer
+ \item
+       Web browser to submit jobs to batch processing
+\end{itemize}
+
+
+
+\subsection{What are the steps needed to setup the pipeline?}\label{what-are-the-steps-needed-to-setup-the-pipeline}
+
+\begin{enumerate}
+ \def\labelenumi{\arabic{enumi}.}
+ \tightlist
+ \item
+       Install dependencies
+ \item
+       Install required packages for R and Python
+\end{enumerate}
+
+\begin{itemize}
+ \tightlist
+ \item
+       A shell script is provided to make the installation of the packages
+       easy.
+ \item
+       Run \texttt{bash\ install/install\_packages.sh} from GAMER-pipeline
+       directory
+ \item
+       Users with a python2 virtual environment please activate before
+       running the script
+\end{itemize}
+
+\begin{enumerate}
+ \def\labelenumi{\arabic{enumi}.}
+ \setcounter{enumi}{2}
+ \tightlist
+ \item
+       Setup MySQL database for Pannzer
+\end{enumerate}
+
+\begin{itemize}
+ \tightlist
+ \item
+       Create a database named pannzer
+ \item
+       Create a user names pannzer and grant all privileges on the database
+       pannzer
+ \item
+       The password should be \texttt{pannzer}
+ \item
+       If you decide to change any of this, please update the config.json
+       {[}mix-meth.PANNZER.database{]} file accordingly.
+\end{itemize}
+
+\subsection{How to run the
+ GAMER-pipeline?}\label{how-to-run-the-gamer-pipeline}
+
+GAMER-pipeline is run in two steps using pipeline1.py and pipleine2.py.
+First part of the pipeline runs the Sequence-similarity methods and
+domain-based methods, and FANN-GO and PANNZER. It also runs the
+pre-processing steps for Argot2.5. Second part of the pipeline processes
+results from different methods and compiles the final GO annotation
+dataset from all differnt approaches. The main steps are given below.
+
+\begin{enumerate}
+ \def\labelenumi{\arabic{enumi}.}
+ \tightlist
+ \item
+       Add the protein fasta file to \texttt{input/raw/}
+ \item
+       Make necessary changes to the config.json file
+\end{enumerate}
+
+\begin{itemize}
+ \tightlist
+ \item
+       Update the \texttt{work\_dir} in the pipeline section
+ \item
+       Update the \texttt{input} section
+
+       \begin{itemize}
+        \tightlist
+        \item
+              Give the correct input FASTA file name
+        \item
+              If the fasta contains multiple transcripts per gene then put the
+              fasta in the \texttt{input/raw} directory and set the
+              \texttt{raw\_fasta} parameter
+        \item
+              If the fasta file contains only on transcript per gene put it in the
+              \texttt{input/filt} directory, and set the \texttt{fasta} parameter
+        \item
+              Update the species, inbred and version parameters for your species
+       \end{itemize}
+ \item
+       {[}Optional{]} Update the \texttt{seq-sim} section
+
+       \begin{itemize}
+        \tightlist
+        \item
+              (All the files should be already processed in this section)
+       \end{itemize}
+ \item
+       {[}Optional{]} Update the \texttt{mix-meth} section
+
+       \begin{itemize}
+        \tightlist
+        \item
+              (All the files and fields should be already set, except changes to
+              database section for PANNZER )
+       \end{itemize}
+ \item
+       {[}Optional{]} Update \texttt{blast} and \texttt{hmmer} sections
+
+       \begin{itemize}
+        \tightlist
+        \item
+              This is to enable the correct number cpu threads for these software
+       \end{itemize}
+ \item
+       All other sections should only be updated if things have been
+       drastically changed.
+\end{itemize}
+
+\begin{enumerate}
+ \def\labelenumi{\arabic{enumi}.}
+ \setcounter{enumi}{2}
+ \tightlist
+ \item
+       execute \texttt{python\ pipeline1.py\ config.json}
+\end{enumerate}
+
+\begin{itemize}
+ \tightlist
+ \item
+       The pipeline will generate a number of intermidiate output files
+ \item
+       Especially the mixed-method tools will require the input fasta to be
+       split into smaller chunks. the chunks will be numbered serially.
+       (e.g.~test.1.fa, test.2.fa)
+ \item
+       Argot 2.5 tool will NOT be executed within the pipeline
+\end{itemize}
+
+\begin{enumerate}
+ \def\labelenumi{\arabic{enumi}.}
+ \setcounter{enumi}{3}
+ \tightlist
+ \item
+       Submit the files in \texttt{mixed-meth/argot2.5/blast} and
+       \texttt{mixed-meth/argot2.5/hmmer} using correct pairing
+ \item
+       Extract the Argot2.5 result files for each job, in the
+       \texttt{mixed-meth/argot2.5/results} directory and rename with correct
+       prefix
+\end{enumerate}
+
+\begin{itemize}
+ \tightlist
+ \item
+       Argot2.5 names all results as \texttt{argot\_results\_ts0.tsv} so the
+       file should be renamed correctly (e.g.~test.1.tsv, test.2.tsv)
+ \item
+       Please do not leave any other file in the argot2.5 results directory,
+       otherwise it will influence certain metrics.
+\end{itemize}
+
+\begin{enumerate}
+ \def\labelenumi{\arabic{enumi}.}
+ \setcounter{enumi}{5}
+ \tightlist
+ \item
+       execute \texttt{python\ pipeline2.py\ config.json}
+\end{enumerate}
+
+\subsection{What are the outputs of
+ GAMER-pipeline?}\label{what-are-the-outputs-of-gamer-pipeline}
+
+GO annotations from GAMER-pipeline will be presented in Go Annotation
+2.0 Format (GAF). All the annotations from different methods will
+converted to GAF format files and will be saved in sub folders in the
+gaf directory. The sub-directory structure in gaf is as follows -
+mixed-method (Raw output from mixed-method piplines) - raw (Raw output
+from Sequence-similarity and Domain-presence based methods, mixed-method
+output filtered to exclude low quality annotations from mixed-method
+pipelines) - uniq (Unique annotations from each tool cleaned by removing
+duplicate annotations from the raw annotation files) - non\_red
+(Non-redundant annotations filtered by removing ancestral GO terms from
+the unique annotation files) - agg (Final aggregate dataset created by
+combining annotations from all 6 Non-redundant annotation datasets)
+
+\end{document}
