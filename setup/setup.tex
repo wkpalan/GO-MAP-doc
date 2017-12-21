@@ -1,0 +1,45 @@
+\subsection{What are the steps needed to setup the pipeline?}\label{what-are-the-steps-needed-to-setup-the-pipeline}
+
+\begin{enumerate}
+ \def\labelenumi{\arabic{enumi}.}
+
+ \item
+       Install dependencies
+ \item
+       Install required packages for R and Python
+\end{enumerate}
+
+\begin{itemize}
+
+ \item
+       A shell script is provided to make the installation of the packages
+       easy.
+ \item
+       Run \texttt{bash\ install/install\_packages.sh} from GAMER-pipeline
+       directory
+ \item
+       Users with a python2 virtual environment please activate before
+       running the script
+\end{itemize}
+
+\begin{enumerate}
+ \def\labelenumi{\arabic{enumi}.}
+ \setcounter{enumi}{2}
+
+ \item
+       Setup MySQL database for Pannzer
+\end{enumerate}
+
+\begin{itemize}
+
+ \item
+       Create a database named pannzer
+ \item
+       Create a user names pannzer and grant all privileges on the database
+       pannzer
+ \item
+       The password should be \texttt{pannzer}
+ \item
+       If you decide to change any of this, please update the config.json
+       {[}mix-meth.PANNZER.database{]} file accordingly.
+\end{itemize}
