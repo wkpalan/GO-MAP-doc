@@ -1,42 +1,15 @@
 \documentclass[11pt,letterpaper]{article}
-% \usepackage[margin=1in]{geometry}
-% \usepackage[document]{ragged2e}
-%  \usepackage[T1]{fontenc}
-%  \usepackage[utf8]{inputenc}
-  \usepackage[pdftex]{graphicx}
-%  \usepackage{subcaption}
-%  \usepackage{rotating}
- \usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
- \hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue, bookmarksnumbered=true,pdfview=FitB}
-% \usepackage{array}
-% \usepackage{authblk}
-% \usepackage{mathptmx}
-% \usepackage{tabularx}
-% \usepackage{wrapfig}
-% \usepackage{lipsum}
-% \usepackage{multirow}
-% \usepackage[usenames, dvipsnames]{color}
-% \usepackage[labelfont=bf]{caption}
-% \usepackage{csvsimple}
-% \usepackage[group-separator={,}]{siunitx}
-% \usepackage{lscape}
-% \usepackage{amsmath}
-% \usepackage{float}
-% \usepackage{listings}
-% \usepackage{DejaVuSansMono}
-% \usepackage{minted}
-% \usepackage{paralist}
-% \setminted[sh]{fontfamily=DejaVuSansMono-TLF,breaksymbolleft=,fontsize=\footnotesize}
-% \setminted[matlab]{fontfamily=DejaVuSansMono-TLF,breaksymbolleft=,fontsize=\footnotesize}
-% \lstset{basicstyle=\fontfamily{DejaVuSansMono-TLF}\footnotesize}
+\usepackage[pdftex]{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue, bookmarksnumbered=true,pdfview=FitB}
 
 % \usepackage[style=chicago-authordate]{biblatex}
 % \addbibresource{references/maize-GO-manuscript.bib}
 
-
 \title{
   \textbf{GO-MAP} \\
-  \Large{ Gene Ontology - Meta Annotator for Plants} \\
+  \Large{ \underline{G}ene \underline{O}ntology - \underline{M}eta \underline{A}nnotator for \underline{P}lants} \\
   \large {Version 0.1}
 }
 \author{Kokulapalan (Gokul) Wimalanathan}
@@ -48,21 +21,14 @@
 \maketitle
 \newpage
 
-\section{Introduction}
-\input{intro/intro}
 
+\input{intro.tex}
 
-\section{Requirements to be installed}
-\input{require/require}
+\input{require.tex}
 
+\input{setup.tex}
 
-\section{Setting up GO-MAP}
-\input{setup/setup}
-
-\section{Running GO-MAP}
-\input{running/steps.tex}
-
-
+\input{steps.tex}
 
 \subsection{What are the outputs of
  GAMER-pipeline?}\label{what-are-the-outputs-of-gamer-pipeline}
