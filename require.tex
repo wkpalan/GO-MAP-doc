@@ -76,23 +76,26 @@ The [DOI release] of the GO-MAP pipeline contains code, software, and data files
     \begin{itemize}
         \item FANN-GO
         \begin{itemize}
-            \item Matlab\footnote[1]{Part of tools installed as mentioned in Section \ref{subsec:install_req}}
+            \item MATLAB$^\dagger$  
             \item BLASTP
         \end{itemize}
         \item PANNZER
         \begin{itemize}
-            \item MySQL/MariaDB\footnotemark[1]
+            \item MySQL/MariaDB$^\dagger$
             \item BLASTP
         \end{itemize}
         \item Argot2
         \begin{itemize}
             \item Hmmer
             \item BLASTP
-            \item Web browser\footnotemark[1] \footnote[2]{to submit jobs to batch processing}
+            \item Web browser$^{\dagger\ddagger}$
         \end{itemize}
     \end{itemize}
 \end{itemize}
 
-The pipeline file downloaded from CyVerse contains the data files and software tools to run the process on a given protein sequence fasta file.
+$^\dagger$Part of requirements installed as mentioned in Section \ref{subsec:install_req}
 
-The disk space required for the pipeline is large (\textasciitilde{}160GB) and when it runs it will require close to 300GB of disk space.
+$^\ddagger$To submit jobs to batch processing
+\\
+
+The pipeline file downloaded from CyVerse contains the data files and software tools to run the process on a given protein sequence fasta file. The disk space required for the pipeline is large (\textasciitilde{}160GB) and when it runs it will require close to 300GB of disk space.
