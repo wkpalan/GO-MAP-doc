@@ -1,10 +1,10 @@
-\section{Requirements to be installed}
+\section{Requirements}
 \label{sec:requirements}
-
-The [DOI release] of the GO-MAP pipeline contains code, software, and data files to run the pipeline. Although, there are some basic requirements which need to be installed. The requirements that have to be installed are listed below.
 
 \subsection{What are the requirements that need to be installed to run GO-MAP?}
 \label{subsec:install_req}
+
+The [DOI release] of the GO-MAP pipeline contains code, some software, and data files to run the pipeline. There are some requirements which need to be installed, before the pipeline can be setup. Requirements that have to be installed are listed below.
 
 \begin{itemize}
  \item Hardware
@@ -20,6 +20,7 @@ The [DOI release] of the GO-MAP pipeline contains code, software, and data files
          \item recommended: $\geq$32 GB
      \end{itemize}
  \end{itemize}
+ 
  \item Software
  \begin{itemize}
      \item OS
@@ -63,6 +64,8 @@ The [DOI release] of the GO-MAP pipeline contains code, software, and data files
 
 \subsection{What are the software tools needed to run specific annotation methods?}
 
+Each GO annotation method needs to run specific software tools on the query sequences and predict GO terms. These are listed below, and some of the software tools listed below have been listed in the previous section to be installed.
+
 \begin{itemize}
     \item Sequence-similarity
         \begin{itemize}
@@ -93,7 +96,6 @@ The [DOI release] of the GO-MAP pipeline contains code, software, and data files
     \end{itemize}
 \end{itemize}
 
-$^\dagger$Part of requirements installed as mentioned in this section\\
-$^\ddagger$To submit jobs to batch processing \\
-
-The pipeline file downloaded from CyVerse contains the data files and software tools to run the process on a given protein sequence fasta file. The disk space required for the pipeline is large (\textasciitilde{}160GB) and when it runs it will require close to 300GB of disk space.
+\noindent
+    $^\dagger$Part of requirements installed as mentioned in this section \\
+    $^\ddagger$To submit jobs to batch processing

@@ -1,0 +1,27 @@
+\ProvidesPackage{GOMAP}
+% this style was created by Gokul Wimalanathan
+\usepackage[pdftex]{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue, bookmarksnumbered=true,pdfview=FitB}
+
+\usepackage{color}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\usepackage{minted}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%\usemintedstyle{tango}
+\setminted{
+    linenos=true,
+    bgcolor=background,
+    tabsize=8
+}

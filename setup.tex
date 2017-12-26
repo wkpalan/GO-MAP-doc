@@ -1,46 +1,38 @@
-\section{Setting up GO-MAP}
-\subsection{What are the steps needed to setup the pipeline?}
-
+\section{Setting Up GO-MAP}
 \begin{enumerate}
- \def\labelenumi{\arabic{enumi}.}
-
- \item
-       Install dependencies
- \item
-       Install required packages for R and Python
+    \item Install dependencies listed in section 2.1
+    \item Create a Python2 virtual environment and activate it \textbf{[optional]}
+        \begin{minted}{bash}
+virtualenv venv
+source venv/bin/activate
+        \end{minted}
+    \item Install required packages for R and Python
+        \begin{itemize}
+            \item A shell script \mintinline{bash}{install/install_packages.sh} is provided to make the installation of the packages easy
+            \item Run the following command from GAMER-pipeline directory
+            \begin{minted}[stripall]{bash}
+                bash install/install_packages.sh
+            \end{minted}
+            
+        \end{itemize}
+    \item Setup MySQL/MariaDB database for Pannzer
+        \begin{itemize}
+            \item Create a database named \mintinline{bash}{pannzer}
+            \item Create the user \mintinline{bash}{pannzer} and grant all privileges on the database \mintinline{bash}{pannzer}
+            \item The password should be \mintinline{bash}{pannzer}
+            \item If you decide to change any of this, please update the \mintinline{bash}{config.json} file accordingly. The section to be updated is shown below.
+            \begin{minted}{json}
+{
+    "PANNZER": {
+                "conf_dir": "mixed-meth/pannzer/conf", 
+                "database": {
+                    "SQL_DB_PORT": "3306", 
+                    "SQL_DB": "pannzer", 
+                    "SQL_DB_PASSWORD": "pannzer", 
+                    "SQL_DB_USER": "pannzer", 
+                    "SQL_DB_HOST": "ccl-gokul.student.iastate.edu"
+                }
+}
+\end{minted}
+        \end{itemize}
 \end{enumerate}
-
-\begin{itemize}
-
- \item
-       A shell script is provided to make the installation of the packages
-       easy.
- \item
-       Run \texttt{bash\ install/install\_packages.sh} from GAMER-pipeline
-       directory
- \item
-       Users with a python2 virtual environment please activate before
-       running the script
-\end{itemize}
-
-\begin{enumerate}
- \def\labelenumi{\arabic{enumi}.}
- \setcounter{enumi}{2}
-
- \item
-       Setup MySQL database for Pannzer
-\end{enumerate}
-
-\begin{itemize}
-
- \item
-       Create a database named pannzer
- \item
-       Create a user names pannzer and grant all privileges on the database
-       pannzer
- \item
-       The password should be \texttt{pannzer}
- \item
-       If you decide to change any of this, please update the config.json
-       {[}mix-meth.PANNZER.database{]} file accordingly.
-\end{itemize}
