@@ -1,0 +1,14 @@
+Parameter, Description, Example
+config\_file,The name of the current configuration  file
+work\_dir, asd
+gene\_start,  asd
+basename,  asd
+filt\_dir,  asd
+taxon,  asd
+raw\_fasta, asd 
+trans\_pattern, asd 
+version,  asd
+fasta,  asd
+log\_file,  asd
+inbred,  asd
+species,  asd

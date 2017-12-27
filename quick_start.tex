@@ -1,0 +1,25 @@
+\subsection{Quick Start Guide}
+
+\begin{enumerate}
+    \item Add the input protein fasta file to \mintinline{bash}{input/raw/}
+    \item Make a copy of the \mintinline{bash}{config.json} file with a different name (e.g. test.json)
+    \item Update \mintinline{bash}{test.json} file as necessary
+    \begin{enumerate}
+        \item Update the \mintinline{bash}{input} section and make changes to match your input fasta and config file
+        \item Update the values for parameters in your \mintinline{bash}{hmmer} and \mintinline{bash}{blast} sections of your config file to fit the computing environment
+    \end{enumerate}
+    \item Activate python virtual environment \textbf{[optional]}
+    \item Run first part of the pipeline
+    \begin{minted}{bash}
+python pipeline1.py test.json
+    \end{minted}
+    \item Check the log file to confirm if the pipeline is complete
+    \item Submit files from \mintinline{bash}{mixed-meth/argot2.5/blast} \& \mintinline{bash}{mixed-meth/argot2.5/hmmer} to Argot2.5 online batch submission tool \\
+    \emph{Note: The jobs can be submitted right after Argot2 preprocessing steps are completed, while FANN-GO and PANNZER steps are running to save time}
+    \item After completion of Argot2 jobs, download the results, rename the files and put them in \mintinline{bash} {mixed-meth/argot2.5/results}
+    \item Run the second part of the pipeline
+    \begin{minted}{bash}
+python pipeline2.py test.json
+    \end{minted}
+    \item The final aggregate dataset will be found at \mintinline{bash}{gaf/agg}
+\end{enumerate}

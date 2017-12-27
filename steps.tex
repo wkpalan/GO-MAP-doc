@@ -1,30 +1,47 @@
-\section{Running GO-MAP}
 
-GO-MAP is run in two distinct steps. Step one is to run pipeline1.py script to run Sequence-similarity methods, domain-based methods and mixed-method pipelines. Second step is to run pipleine2.py which combines outputs from different tools and creates the aggregate GO annotation dataset.
+
+\subsection{Detailed Guide}
 
 \begin{enumerate}
  \item Add the input protein fasta file to \mintinline{bash}{input/raw/}
- \item Update \mintinline{bash}{config.json} file as necessary
+ \item Make a copy of the \mintinline{bash}{config.json} file with a different name (e.g.  \mintinline{bash}{test.json})
+ \item Update \mintinline{bash}{test.json}
+    \begin{enumerate}
+        \item Update the \mintinline{bash}{input} section and make changes to match your input fasta and config file
+        \item input section has the following parameters that can be set
+        \begin{table}[H]
+            \centering
+            \caption{Parameters available to change in input section of the config file}
+            \begin{tabular}{|l|l|}
+              \hline
+              \textbf{Parameter} & \textbf{Description} & \texbf{Example}
+              \csvreader[head to column names]{tables/input_params.txt}{}%
+              {\\\hline \Parameter & \Description & \Example }%
+              \\ \hline
+        \end{tabular}
+      \end{table}
+      
+            % \begin{itemize}
+            %     \item config\_file     : - The name of the current configuration  file
+            %     \item work\_dir        : -
+            %     \item gene\_start
+            %     \item basename
+            %     \item filt\_dir
+            %     \item taxon
+            %     \item raw\_fasta
+            %     \item trans\_pattern
+            %     \item version
+            %     \item fasta
+            %     \item log\_file
+            %     \item inbred
+            %     \item species
+            % \end{itemize}
+            
+    \end{enumerate}
+    
+ \item Update the \mintinline{bash}{input} section
 
-
-\begin{itemize}
-
- \item Update the \mintinline{bash}{pipeline} section
- \begin{minted}{json}
-{
-    "pipeline": {
-        "log_file": "species.inbred.version.log",
-        "config_file": "config.json", 
-        "version": "0.1", 
-        "name": "GO-MAP", 
-        "work_dir": "/current/pipeline/location/GO-MAP"
-    }
-}
- \end{minted}
- \item
-       Update the \mintinline{bash}{input} section
-
-       \begin{itemize}
+   \begin{itemize}
 
         \item
               Give the correct input FASTA file name
@@ -37,7 +54,6 @@ GO-MAP is run in two distinct steps. Step one is to run pipeline1.py script to r
               \texttt{input/filt} directory, and set the \texttt{fasta} parameter
         \item
               Update the species, inbred and version parameters for your species
-       \end{itemize}
  \item
        {[}Optional{]} Update the \texttt{seq-sim} section
 
@@ -114,3 +130,6 @@ GO-MAP is run in two distinct steps. Step one is to run pipeline1.py script to r
  \item
        execute \texttt{python\ pipeline2.py\ config.json}
 \end{enumerate}
+
+
+
